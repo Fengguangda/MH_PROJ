@@ -1,0 +1,61 @@
+C51 COMPILER V9.01   LED                                                                   08/07/2018 19:40:02 PAGE 1   
+
+
+C51 COMPILER V9.01, COMPILATION OF MODULE LED
+OBJECT MODULE PLACED IN led.obj
+COMPILER INVOKED BY: E:\Keil4\C51\BIN\C51.EXE src\driver\led.c BROWSE INCDIR(.\src\app;.\src\include;.\src\driver) DEBUG
+                    - OBJECTEXTEND PRINT(.\led.lst) OBJECT(led.obj)
+
+line level    source
+
+   1          #include "led.h"
+   2          
+   3          void initLed()
+   4          {
+   5   1         P0 = 0x00;
+   6   1      }
+   7          
+   8          /*
+   9            unsigned int which:to control which led will be light
+  10          */
+  11          void lightLed(unsigned int which)
+  12          {
+  13   1              uchar setValue = 1<<which;
+  14   1              P0 |= setValue;
+  15   1      }
+  16          /*
+  17            unsigned int which:to control which led will be close
+  18          */
+  19          void offLed(unsigned int which)
+  20          {
+  21   1              //uchar setValue = ~(1<<which);
+  22   1              P0 &= ~((1U)<<(which-1));       
+  23   1      }
+  24          
+  25          void testLed()
+  26          {
+  27   1              unsigned int i = 0;
+  28   1              initLed();
+  29   1              for(i = 0;i < 8;i++)
+  30   1              {
+  31   2                      lightLed(i);
+  32   2              }
+  33   1              offLed(2);
+  34   1      }
+  35          
+  36          
+  37          
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     67    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)
